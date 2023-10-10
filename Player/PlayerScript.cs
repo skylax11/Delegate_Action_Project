@@ -58,7 +58,6 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                print("sa" + remainingHealth);
                 remainingHealth--;
             }
         }
