@@ -59,9 +59,13 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 remainingHealth--;
+                CheckGameOver();
             }
         }
-        else
+    }
+    public void CheckGameOver()
+    {
+        if (remainingHealth == 0)
         {
             gameManagement.GameOver(PlayerScore);
         }
