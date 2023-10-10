@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     public int PlayerScore;
     public int remainingHealth = 3;
 
+    private float time = 3f;
+
     private void Awake()
     {
         if (instance == null)
@@ -31,6 +33,17 @@ public class PlayerScript : MonoBehaviour
         else
         {
             return;
+        }
+    }
+    private void Update()
+    {
+        if (time >= 0.1f)
+        {
+            time -= Time.deltaTime;
+        }
+        else if(time < 0.1f)
+        {
+            CheckGameOver();
         }
     }
     public void OnClickEvent()
@@ -43,6 +56,7 @@ public class PlayerScript : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null && hit.transform.TryGetComponent(out IShapes shape))
             {
+                time = 3f;
                 this.shape = shape;
 
                 ShapeScore += this.shape.AddPoints;
@@ -65,7 +79,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void CheckGameOver()
     {
-        if (remainingHealth == 0)
+        if (remainingHealth == 0 || time <0.1f)
         {
             gameManagement.GameOver(PlayerScore);
         }
