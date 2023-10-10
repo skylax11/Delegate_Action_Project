@@ -8,7 +8,6 @@ public interface IShapes
     public void AddPoints(int point);
     public void ChangeVisibility();
     public void SetSizeOfElement();
-    public IEnumerator Wait(float sec);
     public void DanceAnimation(bool state);
    
 }

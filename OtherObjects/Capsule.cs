@@ -28,10 +28,6 @@ public class Capsule : MonoBehaviour , IShapes
         gameObject.transform.localScale = new Vector3(Random.Range(0.5f, 3f), Random.Range(0.5f, 3f), Random.Range(0.5f, 3f));
         gameObject.transform.localPosition = new Vector3(Random.Range(-9, 9f), Random.Range(-4, 4f), Random.Range(-9, 9f));
     }
-    public IEnumerator Wait(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-    }
     public void DanceAnimation(bool state)
     {
         animator.SetBool("dance", state);
