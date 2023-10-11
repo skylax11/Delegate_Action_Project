@@ -43,7 +43,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if(time < 0.1f)
         {
-            CheckGameOver();
+            GameOver();
         }
     }
     public void OnClickEvent()
@@ -54,11 +54,16 @@ public class PlayerScript : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+            print(hit.collider);
             if (hit.collider != null && hit.transform.TryGetComponent(out IShapes shape))
             {
                 time = 3f;
                 this.shape = shape;
 
+                if (hit.transform.GetComponent<SpriteRenderer>().material.color == Color.red)
+                {
+                    GameOver();
+                }
                 ShapeScore += this.shape.AddPoints;
                 ShapeActions += this.shape.ChangeVisibility;       // adding functions through delegate
                 ShapeActions += this.shape.SetSizeOfElement;
@@ -73,15 +78,17 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 remainingHealth--;
-                CheckGameOver();
+                if (remainingHealth == 0 || time < 0.1f)
+                {
+                    GameOver();
+                }
             }
         }
     }
-    public void CheckGameOver()
+    public void GameOver()
     {
-        if (remainingHealth == 0 || time <0.1f)
-        {
-            gameManagement.GameOver(PlayerScore);
-        }
+        MenuManager.instance.playerDatas.score = PlayerScore;
+        database.instance.Save(MenuManager.instance.playerDatas);
+        gameManagement.GameOver(PlayerScore);
     }
 }

@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManagement : MonoBehaviour
 {
     [SerializeField] GameObject[] gameObjects;
+    [SerializeField] Color[] color;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI endScore;
     public GameObject LostGame;
@@ -17,9 +19,10 @@ public class GameManagement : MonoBehaviour
     }
     public void SetVisibleRandom()
     {
-        int random = UnityEngine.Random.Range(0, gameObjects.Length);
-
-        gameObjects[random].SetActive(true);
+        int GameObjectRandom = UnityEngine.Random.Range(0, gameObjects.Length);
+        int ColorRandom = UnityEngine.Random.Range(0, color.Length);
+        gameObjects[GameObjectRandom].GetComponent<SpriteRenderer>().color = color[ColorRandom];
+        gameObjects[GameObjectRandom].SetActive(true);
     }
     public void AddAction(Action theAction)
     {
