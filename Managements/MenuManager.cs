@@ -54,7 +54,6 @@ public class MenuManager : MonoBehaviour
     }
     public void StartGame()
     {
-        print(playerDatas.name);
         SceneManager.LoadScene(1);
     }
     public void DisplayLeaderboard()

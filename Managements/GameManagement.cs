@@ -9,13 +9,20 @@ public class GameManagement : MonoBehaviour
 {
     [SerializeField] GameObject[] gameObjects;
     [SerializeField] Color[] color;
+    [SerializeField] PlayerScript playerScript;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timeText;
     public TextMeshProUGUI endScore;
     public GameObject LostGame;
+
     void Start()
     {
         SetVisibleRandom();
+    }
+    private void Update()
+    {
+        timeText.text = "Time :" + ((int)playerScript.time+1).ToString();
     }
     public void SetVisibleRandom()
     {

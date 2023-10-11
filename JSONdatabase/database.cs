@@ -53,6 +53,7 @@ public class database : MonoBehaviour
                 {
                     string jsonWrite = JsonUtility.ToJson(data);
                     File.WriteAllText(Application.dataPath + "/databaseJSONfile" + PlayerDataList[i].id + ".json", jsonWrite);
+                    break;
                 }
             }
         }

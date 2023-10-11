@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
     public int PlayerScore;
     public int remainingHealth = 3;
 
-    private float time = 3f;
+    public float time = 3f;
 
     private void Awake()
     {
@@ -54,7 +54,6 @@ public class PlayerScript : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-            print(hit.collider);
             if (hit.collider != null && hit.transform.TryGetComponent(out IShapes shape))
             {
                 time = 3f;
